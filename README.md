@@ -1,5 +1,7 @@
 ![banner](assets/mast3r.jpg)
 
+## Fork by John Kim
+
 Official implementation of `Grounding Image Matching in 3D with MASt3R`  
 [[Project page](https://europe.naverlabs.com/blog/mast3r-matching-and-stereo-3d-reconstruction/)], [[MASt3R arxiv](https://arxiv.org/abs/2406.09756)], [[DUSt3R arxiv](https://arxiv.org/abs/2312.14132)]  
 
