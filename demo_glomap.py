@@ -5,12 +5,13 @@
 # --------------------------------------------------------
 # gradio demo executable
 # --------------------------------------------------------
+import pycolmap
 import os
 import torch
 import tempfile
 from contextlib import nullcontext
 
-from mast3r.demo import get_args_parser, main_demo
+from mast3r.demo_glomap import get_args_parser, main_demo
 
 from mast3r.model import AsymmetricMASt3R
 from mast3r.utils.misc import hash_md5
@@ -41,7 +42,7 @@ if __name__ == '__main__':
 
     model = AsymmetricMASt3R.from_pretrained(weights_path).to(args.device)
     chkpt_tag = hash_md5(weights_path)
-    
+
     # Auto-set retrieval model if using local weights and no retrieval model specified
     if args.retrieval_model is None and weights_path.startswith("/home/rtx4090/Desktop/tmax/johnk/Multicam-MASt3R-SLAM/checkpoints/"):
         retrieval_model_path = weights_path.replace(".pth", "_retrieval_trainingfree.pth")
@@ -54,5 +55,5 @@ if __name__ == '__main__':
     with get_context(args.tmp_dir) as tmpdirname:
         cache_path = os.path.join(tmpdirname, chkpt_tag)
         os.makedirs(cache_path, exist_ok=True)
-        main_demo(cache_path, model, args.device, args.image_size, server_name, args.server_port, silent=args.silent,
-                  share=args.share, gradio_delete_cache=args.gradio_delete_cache)
+        main_demo(args.glomap_bin, cache_path, model, args.retrieval_model, args.device, args.image_size, server_name,
+                  args.server_port, silent=args.silent, share=args.share, gradio_delete_cache=args.gradio_delete_cache)

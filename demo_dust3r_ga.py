@@ -51,7 +51,14 @@ if __name__ == '__main__':
     if args.weights is not None:
         weights_path = args.weights
     else:
-        weights_path = "naver/" + args.model_name
+        # weights_path = "naver/" + args.model_name
+        weights_path = "/home/rtx4090/Desktop/tmax/johnk/Multicam-MASt3R-SLAM/checkpoints/" + args.model_name + ".pth"
+
+    # # Auto-set retrieval model if using local weights and no retrieval model specified
+    # if args.retrieval_model is None and weights_path.startswith("/home/rtx4090/Desktop/tmax/johnk/Multicam-MASt3R-SLAM/checkpoints/"):
+    #     retrieval_model_path = weights_path.replace(".pth", "_retrieval_trainingfree.pth")
+    #     if os.path.exists(retrieval_model_path):
+    #         args.retrieval_model = retrieval_model_path
 
     try:
         model = AsymmetricMASt3R.from_pretrained(weights_path).to(args.device)

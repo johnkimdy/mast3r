@@ -57,6 +57,7 @@ def get_args_parser():
     for action in actions:
         if action.dest == 'model_name':
             action.choices = ["MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric"]
+            # action.choice = ["/home/rtx4090/Desktop/tmax/johnk/Multicam-MASt3R-SLAM/checkpoints/MASt3R_ViTLarge_BaseDecoder_512_catmlpdpt_metric"]
     # change defaults
     parser.prog = 'mast3r demo'
     return parser

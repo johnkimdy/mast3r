@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# outputs
+output/
+
+# checkpoints
+checkpoints/
+
+# data
+data/
+
+# wandb
+wandb/
